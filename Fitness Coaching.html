@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head> <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💪</text></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forge Fitness Coaching | Build Strength. Transform Life.</title>
+  <meta name="description" content="Premium personal training and online coaching to help you build strength, burn fat, and transform your life. Book your free consultation today.">
+  <meta name="keywords" content="personal trainer, fitness coaching, online coaching, nutrition, weight loss, muscle gain, strength training">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:title" content="Forge Fitness Coaching">
+  <meta property="og:description" content="Build Strength. Transform Life. Premium coaching for real results.">
+  <meta property="og:type" content="website">
+
+  <!-- Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Icons: Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Tailwind CSS (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              emerald: '#059669',
+              darkEmerald: '#064e3b',
+              orange: '#f97316',
+              darkOrange: '#ea580c',
+              charcoal: '#1f2937',
+              cream: '#fafaf9',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- GSAP for scroll animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <style>
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    .dark ::-webkit-scrollbar-track { background: #111827; }
+    ::-webkit-scrollbar-thumb { background: #059669; border-radius: 5px; }
+    ::-webkit-scrollbar-thumb:hover { background: #047857; }
+
+    .text-gradient {
+      background: linear-gradient(135deg, #059669 0%, #f97316 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-bg {
+      background-image: url('https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?q=80&w=1920&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    @media (max-width: 768px) {
+      .hero-bg { background-attachment: scroll; }
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out, padding 0.4s ease;
+    }
+    .accordion-item.active .accordion-content {
+      max-height: 500px;
+    }
+    .accordion-item.active .accordion-icon {
+      transform: rotate(180deg);
+    }
+
+    .testimonial-slide {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+    .testimonial-slide.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .float-btn {
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+  </style>
+</head>
+
+<body class="font-sans antialiased bg-brand-cream text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+
+  <!-- NAVIGATION -->
+  <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 top-0 left-0 py-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center">
+        <a href="#home" class="flex items-center gap-2 group">
+          <div class="w-10 h-10 bg-brand-orange rounded-lg flex items-center justify-center text-white text-xl font-bold group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-dumbbell"></i>
+          </div>
+          <span class="logo-text text-xl font-bold tracking-tight text-white drop-shadow-md">
+            Forge <span class="text-brand-orange">Fitness</span>
+          </span>
+        </a>
+
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#home" class="nav-link text-sm font-medium text-white/90 hover:text-brand-orange transition-colors">Home</a>
+          <a href="#about" class="nav-link text-sm font-medium text-white/90 hover:text-brand-orange transition-colors">About</a>
+          <a href="#services" class="nav-link text-sm font-medium text-white/90 hover:text-brand-orange transition-colors">Services</a>
+          <a href="#transformations" class="nav-link text-sm font-medium text-white/90 hover:text-brand-orange transition-colors">Transformations</a>
+          <a href="#blog" class="nav-link text-sm font-medium text-white/90 hover:text-brand-orange transition-colors">Blog</a>
+          <a href="#contact" class="nav-link text-sm font-medium text-white/90 hover:text-brand-orange transition-colors">Contact</a>
+        </div>
+
+        <div class="hidden md:flex items-center gap-4">
+          <button id="darkModeToggle" class="p-2 rounded-full text-white/90 hover:bg-white/10 transition-colors" aria-label="Toggle dark mode">
+            <i class="fa-solid fa-moon text-lg"></i>
+          </button>
+          <a href="#booking" class="px-5 py-2.5 bg-brand-orange hover:bg-brand-darkOrange text-white font-semibold rounded-full transition-all transform hover:scale-105 shadow-lg shadow-brand-orange/30">
+            Book Now
+          </a>
+        </div>
+
+        <button id="mobileMenuBtn" class="md:hidden p-2 text-white" aria-label="Open menu" aria-expanded="false">
+          <i class="fa-solid fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobileMenu" class="hidden md:hidden absolute top-full left-0 w-full bg-white dark:bg-gray-900 shadow-xl border-t border-gray-100 dark:border-gray-800">
+      <div class="px-4 py-6 space-y-4">
+        <a href="#home" class="block text-gray-900 dark:text-white font-medium hover:text-brand-orange">Home</a>
+        <a href="#about" class="block text-gray-900 dark:text-white font-medium hover:text-brand-orange">About</a>
+        <a href="#services" class="block text-gray-900 dark:text-white font-medium hover:text-brand-orange">Services</a>
+        <a href="#transformations" class="block text-gray-900 dark:text-white font-medium hover:text-brand-orange">Transformations</a>
+        <a href="#blog" class="block text-gray-900 dark:text-white font-medium hover:text-brand-orange">Blog</a>
+        <a href="#contact" class="block text-gray-900 dark:text-white font-medium hover:text-brand-orange">Contact</a>
+        <div class="pt-4 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between">
+          <button id="darkModeToggleMobile" class="flex items-center gap-2 text-gray-900 dark:text-white">
+            <i class="fa-solid fa-moon"></i> Toggle Theme
+          </button>
+          <a href="#booking" class="px-5 py-2 bg-brand-orange text-white font-semibold rounded-full">Book Now</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section id="home" class="relative min-h-screen flex items-center justify-center hero-bg">
+    <div class="absolute inset-0 bg-gradient-to-b from-gray-900/80 via-gray-900/60 to-gray-900/90 dark:from-gray-950/90 dark:via-gray-950/70 dark:to-gray-950/95"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="hero-content">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-medium mb-6">
+          <span class="w-2 h-2 rounded-full bg-brand-orange animate-pulse"></span>
+          #1 Rated Fitness Coaching in the City
+        </div>
+
+        <h1 class="text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tight mb-6 leading-tight">
+          Unlock Your <br>
+          <span class="text-gradient">Strongest Self</span>
+        </h1>
+
+        <p class="text-lg md:text-2xl text-gray-200 max-w-2xl mx-auto mb-4 font-light">
+          Personalized coaching to build strength, burn fat, and transform your life. Your journey starts with a single rep.
+        </p>
+        <p class="text-brand-orange font-semibold tracking-widest uppercase text-sm mb-10">Build Strength. Transform Life.</p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+          <a href="#booking" class="px-8 py-4 bg-brand-orange hover:bg-brand-darkOrange text-white font-bold rounded-full text-lg transition-all transform hover:scale-105 shadow-xl shadow-brand-orange/40 flex items-center gap-2">
+            Book Your Free Consultation <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <a href="#services" class="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white font-semibold rounded-full text-lg transition-all">
+            Explore Programs
+          </a>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-6 md:gap-10">
+          <div class="flex items-center gap-2 text-white/90">
+            <i class="fa-solid fa-certificate text-brand-orange text-xl"></i>
+            <span class="font-semibold">Certified Coach</span>
+          </div>
+          <div class="flex items-center gap-2 text-white/90">
+            <i class="fa-solid fa-users text-brand-orange text-xl"></i>
+            <span class="font-semibold">100+ Transformations</span>
+          </div>
+          <div class="flex items-center gap-2 text-white/90">
+            <i class="fa-solid fa-star text-brand-orange text-xl"></i>
+            <span class="font-semibold">5-Star Rated</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce text-white/50">
+      <i class="fa-solid fa-chevron-down text-2xl"></i>
+    </div>
+  </section>
+
+  <!-- BENEFITS SECTION -->
+  <section id="benefits" class="py-20 md:py-32 bg-white dark:bg-gray-900 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 reveal-on-scroll">
+        <h2 class="text-brand-orange font-semibold tracking-wide uppercase text-sm mb-2">Why Choose Us</h2>
+        <h3 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">Results That Speak</h3>
+        <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">We combine science-backed training with unwavering support to deliver lasting transformations.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="group p-8 rounded-2xl bg-gray-50 dark:bg-gray-800 hover:bg-brand-emerald dark:hover:bg-brand-emerald transition-all duration-300 hover:-translate-y-2 reveal-on-scroll">
+          <div class="w-14 h-14 rounded-xl bg-brand-emerald/10 group-hover:bg-white/20 flex items-center justify-center text-brand-emerald group-hover:text-white text-2xl mb-6 transition-colors">
+            <i class="fa-solid fa-dumbbell"></i>
+          </div>
+          <h4 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-white mb-3">Build Muscle</h4>
+          <p class="text-gray-600 dark:text-gray-400 group-hover:text-white/90">Progressive overload programs designed to increase lean muscle mass and functional strength.</p>
+        </div>
+
+        <div class="group p-8 rounded-2xl bg-gray-50 dark:bg-gray-800 hover:bg-brand-orange dark:hover:bg-brand-orange transition-all duration-300 hover:-translate-y-2 reveal-on-scroll">
+          <div class="w-14 h-14 rounded-xl bg-brand-orange/10 group-hover:bg-white/20 flex items-center justify-center text-brand-orange group-hover:text-white text-2xl mb-6 transition-colors">
+            <i class="fa-solid fa-fire"></i>
+          </div>
+          <h4 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-white mb-3">Burn Fat</h4>
+          <p class="text-gray-600 dark:text-gray-400 group-hover:text-white/90">High-intensity metabolic conditioning combined with strategic nutrition for rapid fat loss.</p>
+        </div>
+
+        <div class="group p-8 rounded-2xl bg-gray-50 dark:bg-gray-800 hover:bg-brand-emerald dark:hover:bg-brand-emerald transition-all duration-300 hover:-translate-y-2 reveal-on-scroll">
+          <div class="w-14 h-14 rounded-xl bg-brand-emerald/10 group-hover:bg-white/20 flex items-center justify-center text-brand-emerald group-hover:text-white text-2xl mb-6 transition-colors">
+            <i class="fa-solid fa-bolt"></i>
+          </div>
+          <h4 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-white mb-3">Increase Energy</h4>
+          <p class="text-gray-600 dark:text-gray-400 group-hover:text-white/90">Optimize your metabolism and sleep patterns to feel vibrant and alert all day long.</p>
+        </div>
+
+        <div class="group p-8 rounded-2xl bg-gray-50 dark:bg-gray-800 hover:bg-brand-orange dark:hover:bg-brand-orange transition-all duration-300 hover:-translate-y-2 reveal-on-scroll">
+          <div class="w-14 h-14 rounded-xl bg-brand-orange/10 group-hover:bg-white/20 flex items-center justify-center text-brand-orange group-hover:text-white text-2xl mb-6 transition-colors">
+            <i class="fa-solid fa-heart"></i>
+          </div>
+          <h4 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-white mb-3">Improve Confidence</h4>
+          <p class="text-gray-600 dark:text-gray-400 group-hover:text-white/90">Transform your mindset and body image with consistent wins and positive reinforcement.</p>
+        </div>
+
+        <div class="group p-8 rounded-2xl bg-gray-50 dark:bg-gray-800 hover:bg-brand-emerald dark:hover:bg-brand-emerald transition-all duration-300 hover:-translate-y-2 reveal-on-scroll">
+          <div class="w-14 h-14 rounded-xl bg-brand-emerald/10 group-hover:bg-white/20 flex items-center justify-center text-brand-emerald group-hover:text-white text-2xl mb-6 transition-colors">
+            <i class="fa-solid fa-calendar-check"></i>
+          </div>
+          <h4 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-white mb-3">Flexible Scheduling</h4>
+          <p class="text-gray-600 dark:text-gray-400 group-hover:text-white/90">Train on your time with in-person, online, and hybrid coaching options that fit your lifestyle.</p>
+        </div>
+
+        <div class="group p-8 rounded-2xl bg-gray-50 dark:bg-gray-800 hover:bg-brand-orange dark:hover:bg-brand-orange transition-all duration-300 hover:-translate-y-2 reveal-on-scroll">
+          <div class="w-14 h-14 rounded-xl bg-brand-orange/10 group-hover:bg-white/20 flex items-center justify-center text-brand-orange group-hover:text-white text-2xl mb-6 transition-colors">
+            <i class="fa-solid fa-carrot"></i>
+          </div>
+          <h4 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-white mb-3">Nutrition Guidance</h4>
+          <p class="text-gray-600 dark:text-gray-400 group-hover:text-white/90">Custom meal plans and macro coaching to fuel your workouts and accelerate recovery.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT THE COACH -->
+  <section id="about" class="py-20 md:py-32 bg-gray-50 dark:bg-gray-800 transition-colors overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div class="relative reveal-on-scroll">
+          <div class="absolute -inset-4 bg-gradient-to-r from-brand-emerald to-brand-orange rounded-2xl opacity-30 blur-lg"></div>
+          <img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?q=80&w=800&auto=format&fit=crop" alt="Coach Alex Morgan - Professional Fitness Trainer" class="relative rounded-2xl shadow-2xl w-full object-cover h-[500px]">
+          <div class="absolute -bottom-6 -right-6 bg-white dark:bg-gray-900 p-6 rounded-xl shadow-xl">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-brand-emerald flex items-center justify-center text-white text-xl">
+                <i class="fa-solid fa-trophy"></i>
+              </div>
+              <div>
+                <p class="text-2xl font-bold text-gray-900 dark:text-white">10+</p>
+                <p class="text-sm text-gray-500 dark:text-gray-400">Years Experience</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal-on-scroll">
+          <h2 class="text-brand-orange font-semibold tracking-wide uppercase text-sm mb-2">Meet Your Coach</h2>
+          <h3 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">Alex Morgan</h3>
+          <p class="text-gray-600 dark:text-gray-300 text-lg mb-6 leading-relaxed">
+            I'm a certified strength coach and nutrition specialist with a passion for helping people discover what their bodies are truly capable of. After transforming my own health journey, I dedicated my career to guiding others through sustainable, science-backed fitness programs.
+          </p>
+          <p class="text-gray-600 dark:text-gray-300 text-lg mb-8 leading-relaxed">
+            My philosophy is simple: <strong class="text-brand-emerald dark:text-brand-emerald">No shortcuts, no gimmicks.</strong> Just hard work, smart programming, and unwavering support. Whether you're a beginner or a seasoned athlete, I'll meet you where you are and push you to where you want to be.
+          </p>
+
+          <div class="grid grid-cols-2 gap-6 mb-8">
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-check-circle text-brand-emerald text-xl"></i>
+              <span class="text-gray-700 dark:text-gray-300 font-medium">NASM Certified</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-check-circle text-brand-emerald text-xl"></i>
+              <span class="text-gray-700 dark:text-gray-300 font-medium">Precision Nutrition</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-check-circle text-brand-emerald text-xl"></i>
+              <span class="text-gray-700 dark:text-gray-300 font-medium">CrossFit L2</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-check-circle text-brand-emerald text-xl"></i>
+              <span class="text-gray-700 dark:text-gray-300 font-medium">BS Kinesiology</span>
+            </div>
+          </div>
+
+          <a href="#booking" class="inline-flex items-center gap-2 px-8 py-4 bg-brand-emerald hover:bg-brand-darkEmerald text-white font-bold rounded-full transition-all transform hover:scale-105">
+            Start Your Journey <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES / PRICING -->
+  <section id="services" class="py-20 md:py-32 bg-white dark:bg-gray-900 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 reveal-on-scroll">
+        <h2 class="text-brand-orange font-semibold tracking-wide uppercase text-sm mb-2">Training Programs</h2>
+        <h3 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">Invest In Yourself</h3>
+        <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">Choose a plan that fits your goals, schedule, and budget. All programs include personalized support.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+        <div class="p-8 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 hover:border-brand-emerald dark:hover:border-brand-emerald transition-all duration-300 hover:-translate-y-2 reveal-on-scroll">
+          <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Starter</h4>
+          <div class="flex items-baseline gap-1 mb-6">
+            <span class="text-4xl font-black text-gray-900 dark:text-white">$99</span>
+            <span class="text-gray-500 dark:text-gray-400">/month</span>
+          </div>
+          <p class="text-gray-600 dark:text-gray-400 mb-6">Perfect for beginners looking to establish a consistent routine.</p>
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300"><i class="fa-solid fa-check text-brand-emerald"></i> 2 Sessions per week</li>
+            <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300"><i class="fa-solid fa-check text-brand-emerald"></i> Basic nutrition guide</li>
+            <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300"><i class="fa-solid fa-check text-brand-emerald"></i> Email support</li>
+            <li class="flex items-center gap-3 text-gray-400 dark:text-gray-500"><i class="fa-solid fa-xmark"></i> Custom meal plans</li>
+          </ul>
+          <a href="#booking" class="block w-full py-3 text-center border-2 border-brand-emerald text-brand-emerald hover:bg-brand-emerald hover:text-white font-bold rounded-full transition-all">Get Started</a>
+        </div>
+
+        <div class="p-8 rounded-2xl bg-brand-charcoal dark:bg-gray-950 border-2 border-brand-orange relative transform md:scale-105 shadow-2xl reveal-on-scroll">
+          <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 px-4 py-1 bg-brand-orange text-white text-sm font-bold rounded-full">MOST POPULAR</div>
+          <h4 class="text-xl font-bold text-white mb-2">Premium</h4>
+          <div class="flex items-baseline gap-1 mb-6">
+            <span class="text-4xl font-black text-white">$199</span>
+            <span class="text-gray-400">/month</span>
+          </div>
+          <p class="text-gray-300 mb-6">Our most popular choice for serious results and dedicated support.</p>
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-center gap-3 text-white"><i class="fa-solid fa-check text-brand-orange"></i> 4 Sessions per week</li>
+            <li class="flex items-center gap-3 text-white"><i class="fa-solid fa-check text-brand-orange"></i> Custom meal plan</li>
+            <li class="flex items-center gap-3 text-white"><i class="fa-solid fa-check text-brand-orange"></i> Weekly check-ins</li>
+            <li class="flex items-center gap-3 text-white"><i class="fa-solid fa-check text-brand-orange"></i> Priority support</li>
+          </ul>
+          <a href="#booking" class="block w-full py-3 text-center bg-brand-orange hover:bg-brand-darkOrange text-white font-bold rounded-full transition-all shadow-lg shadow-brand-orange/30">Get Started</a>
+        </div>
+
+        <div class="p-8 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 hover:border-brand-emerald dark:hover:border-brand-emerald transition-all duration-300 hover:-translate-y-2 reveal-on-scroll">
+          <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Elite</h4>
+          <div class="flex items-baseline gap-1 mb-6">
+            <span class="text-4xl font-black text-gray-900 dark:text-white">$349</span>
+            <span class="text-gray-500 dark:text-gray-400">/month</span>
+          </div>
+          <p class="text-gray-600 dark:text-gray-400 mb-6">The ultimate coaching experience for maximum transformation.</p>
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300"><i class="fa-solid fa-check text-brand-emerald"></i> Unlimited sessions</li>
+            <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300"><i class="fa-solid fa-check text-brand-emerald"></i> 1-on-1 nutrition coaching</li>
+            <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300"><i class="fa-solid fa-check text-brand-emerald"></i> 24/7 messaging access</li>
+            <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300"><i class="fa-solid fa-check text-brand-emerald"></i> Monthly body scans</li>
+          </ul>
+          <a href="#booking" class="block w-full py-3 text-center border-2 border-brand-emerald text-brand-emerald hover:bg-brand-emerald hover:text-white font-bold rounded-full transition-all">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS (Carousel) -->
+  <section id="testimonials" class="py-20 md:py-32 bg-brand-cream dark:bg-gray-800 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 reveal-on-scroll">
+        <h2 class="text-brand-orange font-semibold tracking-wide uppercase text-sm mb-2">Testimonials</h2>
+        <h3 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">Client Success Stories</h3>
+      </div>
+
+      <div class="relative max-w-4xl mx-auto reveal-on-scroll">
+        <div id="testimonialContainer" class="relative min-h-[320px]">
+          <div class="testimonial-slide active absolute inset-0">
+            <div class="bg-white dark:bg-gray-900 rounded-2xl p-8 md:p-12 shadow-xl text-center">
+              <div class="w-20 h-20 mx-auto mb-6 rounded-full overflow-hidden border-4 border-brand-orange">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop" alt="Sarah J." class="w-full h-full object-cover">
+              </div>
+              <div class="flex justify-center gap-1 mb-4 text-brand-orange">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="text-xl md:text-2xl text-gray-700 dark:text-gray-300 italic mb-6">"Alex completely changed my relationship with fitness. I lost 30 lbs in 3 months and gained confidence I never knew I had. The personalized approach makes all the difference."</p>
+              <h5 class="font-bold text-gray-900 dark:text-white text-lg">Sarah Johnson</h5>
+              <p class="text-brand-emerald font-medium">Lost 30 lbs &bull; Premium Plan</p>
+            </div>
+          </div>
+
+          <div class="testimonial-slide absolute inset-0">
+            <div class="bg-white dark:bg-gray-900 rounded-2xl p-8 md:p-12 shadow-xl text-center">
+              <div class="w-20 h-20 mx-auto mb-6 rounded-full overflow-hidden border-4 border-brand-orange">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop" alt="Mike T." class="w-full h-full object-cover">
+              </div>
+              <div class="flex justify-center gap-1 mb-4 text-brand-orange">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="text-xl md:text-2xl text-gray-700 dark:text-gray-300 italic mb-6">"I went from struggling to do 5 push-ups to benching 225 lbs. The programming is smart, efficient, and actually enjoyable. Best investment I've ever made in myself."</p>
+              <h5 class="font-bold text-gray-900 dark:text-white text-lg">Mike Torres</h5>
+              <p class="text-brand-emerald font-medium">Gained 15 lbs muscle &bull; Elite Plan</p>
+            </div>
+          </div>
+
+          <div class="testimonial-slide absolute inset-0">
+            <div class="bg-white dark:bg-gray-900 rounded-2xl p-8 md:p-12 shadow-xl text-center">
+              <div class="w-20 h-20 mx-auto mb-6 rounded-full overflow-hidden border-4 border-brand-orange">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop" alt="Emily R." class="w-full h-full object-cover">
+              </div>
+              <div class="flex justify-center gap-1 mb-4 text-brand-orange">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p class="text-xl md:text-2xl text-gray-700 dark:text-gray-300 italic mb-6">"As a busy mom, I thought I'd never have time to get fit. The flexible online coaching fit perfectly into my schedule. I'm stronger than ever!"</p>
+              <h5 class="font-bold text-gray-900 dark:text-white text-lg">Emily Rodriguez</h5>
+              <p class="text-brand-emerald font-medium">Online Coaching &bull; Starter Plan</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-center items-center gap-4 mt-8">
+          <button id="prevTestimonial" class="w-12 h-12 rounded-full bg-white dark:bg-gray-900 shadow-md flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-brand-orange hover:scale-110 transition-all" aria-label="Previous testimonial">
+            <i class="fa-solid fa-arrow-left"></i>
+          </button>
+          <div class="flex gap-2" id="testimonialDots">
+            <button class="w-3 h-3 rounded-full bg-brand-orange transition-all" aria-label="Go to slide 1"></button>
+            <button class="w-3 h-3 rounded-full bg-gray-300 dark:bg-gray-600 transition-all" aria-label="Go to slide 2"></button>
+            <button class="w-3 h-3 rounded-full bg-gray-300 dark:bg-gray-600 transition-all" aria-label="Go to slide 3"></button>
+          </div>
+          <button id="nextTestimonial" class="w-12 h-12 rounded-full bg-white dark:bg-gray-900 shadow-md flex items-center justify-center text-gray-600 dark:text-gray-300 hover:text-brand-orange hover:scale-110 transition-all" aria-label="Next testimonial">
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRANSFORMATIONS GALLERY -->
+  <section id="transformations" class="py-20 md:py-32 bg-white dark:bg-gray-900 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 reveal-on-scroll">
+        <h2 class="text-brand-orange font-semibold tracking-wide uppercase text-sm mb-2">Transformations</h2>
+        <h3 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">Real People, Real Results</h3>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="group relative rounded-2xl overflow-hidden shadow-lg reveal-on-scroll">
+          <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=600&auto=format&fit=crop" alt="Client transformation result" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+            <p class="text-white font-bold text-lg">David K.</p>
+            <p class="text-brand-orange font-medium">Lost 45 lbs in 5 months</p>
+          </div>
+        </div>
+
+        <div class="group relative rounded-2xl overflow-hidden shadow-lg reveal-on-scroll">
+          <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9a50e?q=80&w=600&auto=format&fit=crop" alt="Client transformation result" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+            <p class="text-white font-bold text-lg">Jessica M.</p>
+            <p class="text-brand-orange font-medium">Gained 12 lbs muscle</p>
+          </div>
+        </div>
+
+        <div class="group relative rounded-2xl overflow-hidden shadow-lg reveal-on-scroll">
+          <img src="https://images.unsplash.com/photo-1594381898411-846e7b193eb2?q=80&w=600&auto=format&fit=crop" alt="Client transformation result" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+            <p class="text-white font-bold text-lg">Ryan P.</p>
+            <p class="text-brand-orange font-medium">Lost 60 lbs in 8 months</p>
+          </div>
+        </div>
+
+        <div class="group relative rounded-2xl overflow-hidden shadow-lg reveal-on-scroll">
+          <img src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?q=80&w=600&auto=format&fit=crop" alt="Client transformation result" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+            <p class="text-white font-bold text-lg">Amanda L.</p>
+            <p class="text-brand-orange font-medium">Completed first marathon</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG SECTION -->
+  <section id="blog" class="py-20 md:py-32 bg-brand-cream dark:bg-gray-800 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 reveal-on-scroll">
+        <h2 class="text-brand-orange font-semibold tracking-wide uppercase text-sm mb-2">Latest Insights</h2>
+        <h3 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">From The Blog</h3>
+        <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">Tips, science, and motivation to keep you moving forward.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <article class="group bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 reveal-on-scroll">
+          <div class="h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=600&auto=format&fit=crop" alt="Nutrition blog" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          </div>
+          <div class="p-6">
+            <div class="text-sm text-brand-orange font-medium mb-2">Nutrition</div>
+            <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-brand-emerald transition-colors">The Ultimate Guide to Macros</h4>
+            <p class="text-gray-600 dark:text-gray-400 mb-4">Learn how to calculate and track your macronutrients for optimal performance and body composition.</p>
+            <a href="#" class="inline-flex items-center gap-2 text-brand-emerald font-semibold hover:gap-3 transition-all">Read More <i class="fa-solid fa-arrow-right text-sm"></i></a>
+          </div>
+        </article>
+
+        <article class="group bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 reveal-on-scroll">
+          <div class="h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1574680096141-1cddd32e04ca?q=80&w=600&auto=format&fit=crop" alt="Training blog" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          </div>
+          <div class="p-6">
+            <div class="text-sm text-brand-orange font-medium mb-2">Training</div>
+            <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-brand-emerald transition-colors">5 Exercises You're Doing Wrong</h4>
+            <p class="text-gray-600 dark:text-gray-400 mb-4">Common form mistakes that limit your gains and increase injury risk&mdash;and how to fix them instantly.</p>
+            <a href="#" class="inline-flex items-center gap-2 text-brand-emerald font-semibold hover:gap-3 transition-all">Read More <i class="fa-solid fa-arrow-right text-sm"></i></a>
+          </div>
+        </article>
+
+        <article class="group bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 reveal-on-scroll">
+          <div class="h-48 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=600&auto=format&fit=crop" alt="Mindset blog" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          </div>
+          <div class="p-6">
+            <div class="text-sm text-brand-orange font-medium mb-2">Mindset</div>
+            <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-brand-emerald transition-colors">Building Discipline Over Motivation</h4>
+            <p class="text-gray-600 dark:text-gray-400 mb-4">Why relying on motivation is a trap, and how to build systems that keep you consistent year-round.</p>
+            <a href="#" class="inline-flex items-center gap-2 text-brand-emerald font-semibold hover:gap-3 transition-all">Read More <i class="fa-solid fa-arrow-right text-sm"></i></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING FORM -->
+  <section id="booking" class="py-20 md:py-32 bg-gray-50 dark:bg-gray-800 transition-colors">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white dark:bg-gray-900 rounded-3xl shadow-2xl p-8 md:p-16 reveal-on-scroll">
+        <div class="text-center mb-12">
+          <h2 class="text-brand-orange font-semibold tracking-wide uppercase text-sm mb-2">Start Today</h2>
+          <h3 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Ready to Start? Book Your Free Consultation</h3>
+          <p class="text-gray-600 dark:text-gray-400">Fill out the form below and I'll reach out within 24 hours to schedule your session.</p>
+        </div>
+
+        <form id="bookingForm" class="space-y-6" novalidate>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="fullName" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Full Name *</label>
+              <input type="text" id="fullName" name="fullName" required class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand-emerald focus:border-transparent outline-none transition-all" placeholder="John Doe">
+              <p class="text-red-500 text-sm mt-1 hidden" id="nameError">Please enter your full name.</p>
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email Address *</label>
+              <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand-emerald focus:border-transparent outline-none transition-all" placeholder="john@example.com">
+              <p class="text-red-500 text-sm mt-1 hidden" id="emailError">Please enter a valid email.</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Phone Number</label>
+              <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand-emerald focus:border-transparent outline-none transition-all" placeholder="(555) 123-4567">
+            </div>
+            <div>
+              <label for="goal" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Primary Goal *</label>
+              <select id="goal" name="goal" required class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand-emerald focus:border-transparent outline-none transition-all">
+                <option value="">Select your goal...</option>
+                <option value="weight-loss">Weight Loss</option>
+                <option value="muscle-gain">Muscle Gain</option>
+                <option value="strength">Strength & Power</option>
+                <option value="endurance">Endurance & Cardio</option>
+                <option value="general">General Health</option>
+                <option value="rehab">Injury Rehabilitation</option>
+              </select>
+              <p class="text-red-500 text-sm mt-1 hidden" id="goalError">Please select a goal.</p>
+            </div>
+          </div>
+
+          <div>
+            <label for="time" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Preferred Training Time</label>
+            <select id="time" name="time" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand-emerald focus:border-transparent outline-none transition-all">
+              <option value="">Select preferred time...</option>
+              <option value="morning">Morning (5am - 9am)</option>
+              <option value="midday">Midday (9am - 2pm)</option>
+              <option value="evening">Evening (2pm - 6pm)</option>
+              <option value="night">Night (6pm - 9pm)</option>
+              <option value="weekend">Weekends Only</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message</label>
+            <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-brand-emerald focus:border-transparent outline-none transition-all resize-none" placeholder="Tell me about your fitness history, injuries, or specific goals..."></textarea>
+          </div>
+
+          <button type="submit" id="submitBtn" class="w-full py-4 bg-brand-orange hover:bg-brand-darkOrange text-white font-bold text-lg rounded-xl transition-all transform hover:scale-[1.02] shadow-lg shadow-brand-orange/30 flex items-center justify-center gap-2">
+            <span>Submit Request</span>
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </form>
+
+        <div id="successMessage" class="hidden mt-8 p-6 bg-brand-emerald/10 border border-brand-emerald rounded-xl text-center">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-brand-emerald flex items-center justify-center text-white text-2xl">
+            <i class="fa-solid fa-check"></i>
+          </div>
+          <h4 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">You're All Set!</h4>
+          <p class="text-gray-600 dark:text-gray-300">Thanks for reaching out, <span id="successName"></span>! I'll be in touch within 24 hours to confirm your free consultation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ ACCORDION -->
+  <section id="faq" class="py-20 md:py-32 bg-white dark:bg-gray-900 transition-colors">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 reveal-on-scroll">
+        <h2 class="text-brand-orange font-semibold tracking-wide uppercase text-sm mb-2">FAQ</h2>
+        <h3 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">Common Questions</h3>
+      </div>
+
+      <div class="space-y-4 reveal-on-scroll">
+        <div class="accordion-item border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
+          <button class="accordion-trigger w-full flex items-center justify-between p-6 text-left bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-750 transition-colors" aria-expanded="false">
+            <span class="text-lg font-semibold text-gray-900 dark:text-white">How long before I see results?</span>
+            <i class="fa-solid fa-chevron-down accordion-icon text-brand-orange transition-transform duration-300"></i>
+          </button>
+          <div class="accordion-content bg-white dark:bg-gray-900">
+            <div class="p-6 pt-0 text-gray-600 dark:text-gray-400">
+              Most clients notice significant changes in energy and mood within the first 2 weeks. Visible physical changes typically appear within 4-6 weeks of consistent training and nutrition adherence.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
+          <button class="accordion-trigger w-full flex items-center justify-between p-6 text-left bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-750 transition-colors" aria-expanded="false">
+            <span class="text-lg font-semibold text-gray-900 dark:text-white">Do I need a gym membership?</span>
+            <i class="fa-solid fa-chevron-down accordion-icon text-brand-orange transition-transform duration-300"></i>
+          </button>
+          <div class="accordion-content bg-white dark:bg-gray-900">
+            <div class="p-6 pt-0 text-gray-600 dark:text-gray-400">
+              Not necessarily! I offer both gym-based and home workout programs. For home training, we can work with minimal equipment (dumbbells, resistance bands) or even bodyweight-only routines.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
+          <button class="accordion-trigger w-full flex items-center justify-between p-6 text-left bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-750 transition-colors" aria-expanded="false">
+            <span class="text-lg font-semibold text-gray-900 dark:text-white">What if I have a previous injury?</span>
+            <i class="fa-solid fa-chevron-down accordion-icon text-brand-orange transition-transform duration-300"></i>
+          </button>
+          <div class="accordion-content bg-white dark:bg-gray-900">
+            <div class="p-6 pt-0 text-gray-600 dark:text-gray-400">
+              Safety is my top priority. During your consultation, we'll discuss your full medical history. I have experience with injury rehabilitation and will modify exercises to work around limitations while still driving progress.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
+          <button class="accordion-trigger w-full flex items-center justify-between p-6 text-left bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-750 transition-colors" aria-expanded="false">
+            <span class="text-lg font-semibold text-gray-900 dark:text-white">Can I switch plans later?</span>
+            <i class="fa-solid fa-chevron-down accordion-icon text-brand-orange transition-transform duration-300"></i>
+          </button>
+          <div class="accordion-content bg-white dark:bg-gray-900">
+            <div class="p-6 pt-0 text-gray-600 dark:text-gray-400">
+              Absolutely! Your needs may change as you progress. You can upgrade, downgrade, or switch between in-person and online coaching at any time with 7 days notice.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
+          <button class="accordion-trigger w-full flex items-center justify-between p-6 text-left bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-750 transition-colors" aria-expanded="false">
+            <span class="text-lg font-semibold text-gray-900 dark:text-white">Is there a contract or commitment?</span>
+            <i class="fa-solid fa-chevron-down accordion-icon text-brand-orange transition-transform duration-300"></i>
+          </button>
+          <div class="accordion-content bg-white dark:bg-gray-900">
+            <div class="p-6 pt-0 text-gray-600 dark:text-gray-400">
+              All plans are month-to-month with no long-term contracts. I believe in earning your business every single month through results and exceptional service.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact" class="bg-gray-900 dark:bg-black text-white pt-20 pb-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div>
+          <a href="#home" class="flex items-center gap-2 mb-6">
+            <div class="w-10 h-10 bg-brand-orange rounded-lg flex items-center justify-center text-white text-xl font-bold">
+              <i class="fa-solid fa-dumbbell"></i>
+            </div>
+            <span class="text-xl font-bold tracking-tight">
+              Forge <span class="text-brand-orange">Fitness</span>
+            </span>
+          </a>
+          <p class="text-gray-400 mb-6">Building strength and transforming lives through personalized coaching and unwavering support.</p>
+          <div class="flex gap-4">
+            <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-brand-orange flex items-center justify-center transition-colors" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-brand-orange flex items-center justify-center transition-colors" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-brand-orange flex items-center justify-center transition-colors" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-brand-orange flex items-center justify-center transition-colors" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-bold mb-6">Quick Links</h4>
+          <ul class="space-y-3">
+            <li><a href="#home" class="text-gray-400 hover:text-brand-orange transition-colors">Home</a></li>
+            <li><a href="#about" class="text-gray-400 hover:text-brand-orange transition-colors">About</a></li>
+            <li><a href="#services" class="text-gray-400 hover:text-brand-orange transition-colors">Services</a></li>
+            <li><a href="#transformations" class="text-gray-400 hover:text-brand-orange transition-colors">Transformations</a></li>
+            <li><a href="#blog" class="text-gray-400 hover:text-brand-orange transition-colors">Blog</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-bold mb-6">Programs</h4>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-gray-400 hover:text-brand-orange transition-colors">Personal Training</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-brand-orange transition-colors">Online Coaching</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-brand-orange transition-colors">Group Programs</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-brand-orange transition-colors">Nutrition Guidance</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-brand-orange transition-colors">Corporate Wellness</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-bold mb-6">Contact</h4>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3 text-gray-400">
+              <i class="fa-solid fa-location-dot mt-1 text-brand-orange"></i>
+              <span>123 Fitness Ave, Suite 100<br>Los Angeles, CA 90001</span>
+            </li>
+            <li class="flex items-center gap-3 text-gray-400">
+              <i class="fa-solid fa-phone text-brand-orange"></i>
+              <span>(555) 123-4567</span>
+            </li>
+            <li class="flex items-center gap-3 text-gray-400">
+              <i class="fa-solid fa-envelope text-brand-orange"></i>
+              <span>alex@forgefitness.com</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-gray-500 text-sm">&copy; 2026 Forge Fitness Coaching. All rights reserved.</p>
+        <div class="flex gap-6 text-sm text-gray-500">
+          <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING "BOOK NOW" BUTTON -->
+  <a href="#booking" id="floatingBtn" class="fixed bottom-6 right-6 z-40 px-6 py-4 bg-brand-orange hover:bg-brand-darkOrange text-white font-bold rounded-full shadow-2xl shadow-brand-orange/40 transition-all transform hover:scale-105 float-btn hidden items-center gap-2">
+    <i class="fa-solid fa-calendar-check"></i>
+    <span class="hidden sm:inline">Book Now</span>
+  </a>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const html = document.documentElement;
+
+      const darkModeToggles = [
+        document.getElementById('darkModeToggle'),
+        document.getElementById('darkModeToggleMobile')
+      ];
+      const darkModeIcon = document.querySelector('#darkModeToggle i');
+
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        html.classList.add('dark');
+        if (darkModeIcon) darkModeIcon.classList.replace('fa-moon', 'fa-sun');
+      } else {
+        html.classList.remove('dark');
+      }
+
+      function toggleDarkMode() {
+        if (html.classList.contains('dark')) {
+          html.classList.remove('dark');
+          localStorage.theme = 'light';
+          if (darkModeIcon) {
+            darkModeIcon.classList.remove('fa-sun');
+            darkModeIcon.classList.add('fa-moon');
+          }
+        } else {
+          html.classList.add('dark');
+          localStorage.theme = 'dark';
+          if (darkModeIcon) {
+            darkModeIcon.classList.remove('fa-moon');
+            darkModeIcon.classList.add('fa-sun');
+          }
+        }
+      }
+
+      darkModeToggles.forEach(btn => {
+        if (btn) btn.addEventListener('click', toggleDarkMode);
+      });
+
+      const navbar = document.getElementById('navbar');
+      const desktopLinks = navbar.querySelectorAll('.nav-link');
+      const logoText = navbar.querySelector('.logo-text');
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const darkModeToggleDesktop = document.getElementById('darkModeToggle');
+
+      function updateNavbar() {
+        if (window.scrollY > 50) {
+          navbar.classList.add('bg-white/90', 'dark:bg-gray-900/90', 'backdrop-blur-md', 'shadow-lg', 'py-2');
+          navbar.classList.remove('py-4');
+          desktopLinks.forEach(link => {
+            link.classList.remove('text-white/90');
+            link.classList.add('text-gray-700', 'dark:text-gray-200');
+          });
+          if (logoText) {
+            logoText.classList.remove('text-white', 'drop-shadow-md');
+            logoText.classList.add('text-gray-900');
+          }
+          if (mobileMenuBtn) {
+            mobileMenuBtn.classList.remove('text-white');
+            mobileMenuBtn.classList.add('text-gray-900', 'dark:text-white');
+          }
+          if (darkModeToggleDesktop) {
+            darkModeToggleDesktop.classList.remove('text-white/90');
+            darkModeToggleDesktop.classList.add('text-gray-700', 'dark:text-gray-200');
+          }
+        } else {
+          navbar.classList.remove('bg-white/90', 'dark:bg-gray-900/90', 'backdrop-blur-md', 'shadow-lg', 'py-2');
+          navbar.classList.add('py-4');
+          desktopLinks.forEach(link => {
+            link.classList.add('text-white/90');
+            link.classList.remove('text-gray-700', 'dark:text-gray-200');
+          });
+          if (logoText) {
+            logoText.classList.add('text-white', 'drop-shadow-md');
+            logoText.classList.remove('text-gray-900');
+          }
+          if (mobileMenuBtn) {
+            mobileMenuBtn.classList.add('text-white');
+            mobileMenuBtn.classList.remove('text-gray-900', 'dark:text-white');
+          }
+          if (darkModeToggleDesktop) {
+            darkModeToggleDesktop.classList.add('text-white/90');
+            darkModeToggleDesktop.classList.remove('text-gray-700', 'dark:text-gray-200');
+          }
+        }
+      }
+
+      window.addEventListener('scroll', updateNavbar);
+      updateNavbar();
+
+      const mobileMenu = document.getElementById('mobileMenu');
+      let isMenuOpen = false;
+
+      if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+          isMenuOpen = !isMenuOpen;
+          mobileMenu.classList.toggle('hidden');
+          mobileMenuBtn.setAttribute('aria-expanded', isMenuOpen);
+          mobileMenuBtn.innerHTML = isMenuOpen 
+            ? '<i class="fa-solid fa-xmark text-2xl"></i>' 
+            : '<i class="fa-solid fa-bars text-2xl"></i>';
+        });
+        mobileMenu.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            isMenuOpen = false;
+            mobileMenu.classList.add('hidden');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            mobileMenuBtn.innerHTML = '<i class="fa-solid fa-bars text-2xl"></i>';
+          });
+        });
+      }
+
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      const slides = document.querySelectorAll('.testimonial-slide');
+      const dots = document.querySelectorAll('#testimonialDots button');
+      const prevBtn = document.getElementById('prevTestimonial');
+      const nextBtn = document.getElementById('nextTestimonial');
+      let currentSlide = 0;
+
+      function showSlide(index) {
+        slides.forEach((slide, i) => {
+          slide.classList.remove('active');
+          dots[i].classList.remove('bg-brand-orange');
+          dots[i].classList.add('bg-gray-300', 'dark:bg-gray-600');
+        });
+        slides[index].classList.add('active');
+        dots[index].classList.remove('bg-gray-300', 'dark:bg-gray-600');
+        dots[index].classList.add('bg-brand-orange');
+        currentSlide = index;
+      }
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+          let newIndex = currentSlide - 1;
+          if (newIndex < 0) newIndex = slides.length - 1;
+          showSlide(newIndex);
+        });
+      }
+
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+          let newIndex = currentSlide + 1;
+          if (newIndex >= slides.length) newIndex = 0;
+          showSlide(newIndex);
+        });
+      }
+
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => showSlide(i));
+      });
+
+      setInterval(() => {
+        let newIndex = currentSlide + 1;
+        if (newIndex >= slides.length) newIndex = 0;
+        showSlide(newIndex);
+      }, 6000);
+
+      const accordionItems = document.querySelectorAll('.accordion-item');
+      accordionItems.forEach(item => {
+        const trigger = item.querySelector('.accordion-trigger');
+        trigger.addEventListener('click', () => {
+          const isActive = item.classList.contains('active');
+          accordionItems.forEach(i => {
+            i.classList.remove('active');
+            i.querySelector('.accordion-trigger').setAttribute('aria-expanded', 'false');
+          });
+          if (!isActive) {
+            item.classList.add('active');
+            trigger.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+
+      const form = document.getElementById('bookingForm');
+      const successMsg = document.getElementById('successMessage');
+      const submitBtn = document.getElementById('submitBtn');
+
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          let isValid = true;
+          document.querySelectorAll('[id$="Error"]').forEach(el => el.classList.add('hidden'));
+          form.querySelectorAll('input, select').forEach(el => el.classList.remove('border-red-500'));
+
+          const name = document.getElementById('fullName');
+          if (!name.value.trim()) {
+            document.getElementById('nameError').classList.remove('hidden');
+            name.classList.add('border-red-500');
+            isValid = false;
+          }
+
+          const email = document.getElementById('email');
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(email.value.trim())) {
+            document.getElementById('emailError').classList.remove('hidden');
+            email.classList.add('border-red-500');
+            isValid = false;
+          }
+
+          const goal = document.getElementById('goal');
+          if (!goal.value) {
+            document.getElementById('goalError').classList.remove('hidden');
+            goal.classList.add('border-red-500');
+            isValid = false;
+          }
+
+          if (isValid) {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Sending...';
+            setTimeout(() => {
+              form.classList.add('hidden');
+              successMsg.classList.remove('hidden');
+              document.getElementById('successName').textContent = name.value.trim().split(' ')[0];
+              form.reset();
+              submitBtn.disabled = false;
+              submitBtn.innerHTML = '<span>Submit Request</span><i class="fa-solid fa-paper-plane"></i>';
+            }, 1500);
+          }
+        });
+      }
+
+      const floatingBtn = document.getElementById('floatingBtn');
+      if (floatingBtn) {
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > window.innerHeight * 0.6) {
+            floatingBtn.classList.remove('hidden');
+            floatingBtn.classList.add('flex');
+          } else {
+            floatingBtn.classList.add('hidden');
+            floatingBtn.classList.remove('flex');
+          }
+        });
+      }
+
+      if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.from('.hero-content', {
+          opacity: 0,
+          y: 40,
+          duration: 1,
+          ease: 'power3.out',
+          delay: 0.2
+        });
+        gsap.utils.toArray('.reveal-on-scroll').forEach((el) => {
+          gsap.from(el, {
+            opacity: 0,
+            y: 50,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 85%',
+              toggleActions: 'play none none none'
+            }
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>
